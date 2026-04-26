@@ -6,17 +6,16 @@
 trigger:
 - main
 
-pool: TestAgent
+pool: ubuntu-latest
 
 steps:
-- task: Maven@4
+- task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'compile'
+    mavenOptions: '-Xmx3072m'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+    
